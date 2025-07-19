@@ -28,7 +28,7 @@ logger.warning("ALLOWED_HOSTS: %s", ALLOWED_HOSTS)
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS =['https://vanta-ai-1.onrender.com']
+ALLOWED_HOSTS = ['vanta-ai-1.onrender.com', 'localhost', '127.0.0.1']
 
 
 
