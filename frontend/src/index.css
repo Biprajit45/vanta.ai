@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cyberpunk AI Agent Design System - Dark Futuristic Theme */
+
+@layer base {
+  :root {
+    /* Base colors - dark cyberpunk tones */
+    --background: 240 10% 3.9%;
+    --foreground: 180 100% 90%;
+
+    /* Cyberpunk cards */
+    --card: 240 10% 8%;
+    --card-foreground: 180 100% 90%;
+
+    --popover: 240 10% 8%;
+    --popover-foreground: 180 100% 90%;
+
+    /* Primary - electric cyan */
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 10% 3.9%;
+
+    /* Secondary - neon purple */
+    --secondary: 270 100% 60%;
+    --secondary-foreground: 240 10% 3.9%;
+
+    /* Muted tones */
+    --muted: 240 5% 15%;
+    --muted-foreground: 180 20% 70%;
+
+    /* Accent - danger red */
+    --accent: 0 100% 60%;
+    --accent-foreground: 240 10% 3.9%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5% 20%;
+    --input: 240 5% 15%;
+    --ring: 180 100% 50%;
+
+    /* Cyberpunk glass morphism */
+    --glass-bg: 240 10% 8% / 0.8;
+    --glass-border: 180 100% 50% / 0.2;
+    --glass-shadow: 180 100% 50% / 0.25;
+
+    /* Cyberpunk gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(240 10% 3.9%) 0%, hsl(270 50% 10%) 50%, hsl(180 50% 8%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(240 10% 8% / 0.8) 0%, hsl(270 50% 10% / 0.6) 100%);
+    --gradient-neon: linear-gradient(135deg, hsl(180 100% 50%) 0%, hsl(270 100% 60%) 100%);
+    --gradient-danger: linear-gradient(135deg, hsl(0 100% 60%) 0%, hsl(15 100% 50%) 100%);
+
+    /* Animation variables */
+    --float-duration: 4s;
+    --pulse-duration: 1.5s;
+    --glitch-duration: 2s;
+    --scan-duration: 3s;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-cyber);
+    min-height: 100vh;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+}
+
+@layer components {
+  /* Cyberpunk glass morphism utilities */
+  .cyber-glass {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: 0 8px 32px hsl(var(--glass-shadow));
+  }
+
+  .cyber-card {
+    @apply cyber-glass rounded-xl p-6 border border-primary/20;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.1), inset 0 0 20px hsl(var(--primary) / 0.05);
+  }
+
+  /* Cyberpunk animations */
+  .cyber-float {
+    animation: cyber-float var(--float-duration) ease-in-out infinite;
+  }
+
+  .cyber-pulse {
+    animation: cyber-pulse var(--pulse-duration) ease-in-out infinite;
+  }
+
+  .cyber-glitch {
+    animation: cyber-glitch var(--glitch-duration) ease-in-out infinite;
+  }
+
+  .scanning-line {
+    animation: scanning-line var(--scan-duration) linear infinite;
+  }
+
+  .neon-text {
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+
+  .danger-text {
+    background: var(--gradient-danger);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 10px hsl(var(--accent) / 0.5);
+  }
+
+  .cyber-border {
+    border: 1px solid hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 10px hsl(var(--primary) / 0.1), inset 0 0 10px hsl(var(--primary) / 0.05);
+  }
+
+  .scan-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scan-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+    animation: scanning-line var(--scan-duration) linear infinite;
+  }
+}
+
+@keyframes cyber-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes cyber-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.1), inset 0 0 20px hsl(var(--primary) / 0.05);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.3), inset 0 0 40px hsl(var(--primary) / 0.1);
+  }
+}
+
+@keyframes cyber-glitch {
+  0%, 98%, 100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  2% {
+    transform: translate(2px, 0);
+    filter: hue-rotate(90deg);
+  }
+  4% {
+    transform: translate(-2px, 0);
+    filter: hue-rotate(180deg);
+  }
+  6% {
+    transform: translate(0, 1px);
+    filter: hue-rotate(270deg);
+  }
+}
+
+@keyframes scanning-line {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}

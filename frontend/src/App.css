@@ -1,0 +1,78 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* --- Cyberpunk Animations for Onboarding Success --- */
+@keyframes glitch {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-2px,2px); }
+  40% { transform: translate(-2px,-2px); }
+  60% { transform: translate(2px,2px); }
+  80% { transform: translate(2px,-2px); }
+  100% { transform: translate(0,0); }
+}
+.animate-glitch { animation: glitch 1s infinite linear alternate-reverse; }
+.animate-glitch2 { animation: glitch 0.8s infinite linear alternate-reverse; }
+.animate-glitch3 { animation: glitch 1.2s infinite linear alternate-reverse; }
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.5; }
+  55% { opacity: 0.7; }
+  60% { opacity: 0.3; }
+  80% { opacity: 0.8; }
+}
+.animate-flicker { animation: flicker 1.5s infinite alternate; }
+
+@keyframes border-glow {
+  0%, 100% { box-shadow: 0 0 16px 4px #0ff, 0 0 32px 8px #0ff2; }
+  50% { box-shadow: 0 0 32px 8px #0ff, 0 0 64px 16px #0ff2; }
+}
+.animate-border-glow { animation: border-glow 2s infinite alternate; }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-fade-in { animation: fade-in 0.7s cubic-bezier(.4,2,.6,1) both; }
+
+/* --- End Cyberpunk Animations --- */
