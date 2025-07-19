@@ -7,6 +7,8 @@ import { Brain, Lock, User, Mail, ArrowRight, Eye, EyeOff, Shield } from "lucide
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+const API_BASE = 'https://vanta-ai-1.onrender.com/api/';
+
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -52,7 +54,7 @@ const Signup = () => {
     }
     setIsLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/signup/", {
+      const res = await fetch(`${API_BASE}signup/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -31,6 +31,7 @@ const Onboarding = () => {
   const [isChecking, setIsChecking] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [userEmail] = useState(() => localStorage.getItem("vanta_user_email") || "");
+  const API_BASE = 'https://vanta-ai-1.onrender.com/api/';
 
   const nextStep = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const prevStep = () => setStep((s) => Math.max(s - 1, 0));
@@ -72,7 +73,7 @@ const Onboarding = () => {
     setSuggestions([]);
     setIsChecking(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/check-clone-name/", {
+      const res = await fetch(`${API_BASE}check-clone-name/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: cloneName })
@@ -96,7 +97,7 @@ const Onboarding = () => {
     setIsSaving(true);
     setNameError("");
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/set-clone-name/", {
+      const res = await fetch(`${API_BASE}set-clone-name/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userEmail, clone_name: cloneName })

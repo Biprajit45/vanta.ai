@@ -55,6 +55,7 @@ const Chat = () => {
   const userMessageCount = messages.filter(m => m.sender === "user").length;
   const guestLimitReached = sidebarUsername === "Agent User" && userMessageCount >= MAX_GUEST_MESSAGES;
   const navigate = useNavigate();
+  const API_BASE = 'https://vanta-ai-1.onrender.com/api/';
 
   useEffect(() => {
     // If the user lands on /chat with a query param ?demo=1, set demo mode
@@ -74,7 +75,7 @@ const Chat = () => {
       const email = localStorage.getItem("vanta_user_email");
       if (!email) return;
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/get-clone-name/?email=${encodeURIComponent(email)}`);
+        const res = await fetch(`${API_BASE}get-clone-name/?email=${encodeURIComponent(email)}`);
         const data = await res.json();
         if (res.ok && data.clone_name) {
           setCloneName(data.clone_name);

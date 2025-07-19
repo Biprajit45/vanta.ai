@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Brain, Lock, User, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
+const API_BASE = 'https://vanta-ai-1.onrender.com/api/';
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +27,7 @@ const Login = () => {
     setError("");
     setIsLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/login/", {
+      const res = await fetch(`${API_BASE}login/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -47,7 +49,7 @@ const Login = () => {
       } else {
         // Fetch email from backend
         try {
-          const res = await fetch("http://127.0.0.1:8000/api/get-email/", {
+          const res = await fetch(`${API_BASE}get-email/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username: form.username })

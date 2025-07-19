@@ -15,6 +15,8 @@ const ForgotPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const API_BASE = 'https://vanta-ai-1.onrender.com/api/';
+
   const validatePassword = (password: string) => {
     return /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]).{8,}$/.test(password);
   };
@@ -25,7 +27,7 @@ const ForgotPassword = () => {
     setMessage("");
     setIsLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/forgot-password/", {
+      const res = await fetch(`${API_BASE}forgot-password/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email })
@@ -59,7 +61,7 @@ const ForgotPassword = () => {
     }
     setIsLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/reset-password/", {
+      const res = await fetch(`${API_BASE}reset-password/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password: newPassword })
