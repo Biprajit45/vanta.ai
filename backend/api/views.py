@@ -7,28 +7,30 @@ from rest_framework.response import Response
 from .serializers import UserSerializer
 import re
 from django.db.models import Q
+import logging
+logger = logging.getLogger(__name__)
 
 @api_view(['POST'])
 def signup(request):
-    print("[SIGNUP] Incoming data:", request.data)  # Log incoming data
+    logger.warning("[SIGNUP] Incoming data: %s", request.data)
     username = request.data.get('username')
     email = request.data.get('email')
     password = request.data.get('password')
     if not username or not email or not password:
-        print("[SIGNUP] Missing fields:", {'username': username, 'email': email, 'password': bool(password)})
+        logger.warning("[SIGNUP] Missing fields: %s", {'username': username, 'email': email, 'password': bool(password)})
         return Response({'error': 'All fields required'}, status=status.HTTP_400_BAD_REQUEST)
     if User.objects.filter(username=username).exists():
-        print(f"[SIGNUP] Username already exists: {username}")
+        logger.warning("[SIGNUP] Username already exists: %s", username)
         return Response({'error': 'Username already exists'}, status=status.HTTP_409_CONFLICT)
     if User.objects.filter(email=email).exists():
-        print(f"[SIGNUP] Email already exists: {email}")
+        logger.warning("[SIGNUP] Email already exists: %s", email)
         return Response({'error': 'Email already exists'}, status=status.HTTP_409_CONFLICT)
     # Password strictness
     if not re.match(r"^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':\"\\|,.<>/?]).{8,}$", password):
-        print(f"[SIGNUP] Password does not meet requirements for: {email}")
+        logger.warning("[SIGNUP] Password does not meet requirements for: %s", email)
         return Response({'error': 'Password must be at least 8 characters, include an uppercase letter, a number, and a special character.'}, status=status.HTTP_400_BAD_REQUEST)
     user = User.objects.create_user(username=username, email=email, password=password)
-    print(f"[SIGNUP] User created: {username} ({email})")
+    logger.warning("[SIGNUP] User created: %s (%s)", username, email)
     return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
