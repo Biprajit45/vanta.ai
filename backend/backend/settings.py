@@ -16,6 +16,12 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import logging
+logger = logging.getLogger(__name__)
+logger.warning("DJANGO_SECRET_KEY: %s", os.environ.get('DJANGO_SECRET_KEY'))
+logger.warning("DEBUG: %s", os.environ.get('DEBUG'))
+logger.warning("DATABASE_URL: %s", os.environ.get('DATABASE_URL'))
+logger.warning("ALLOWED_HOSTS: %s", ALLOWED_HOSTS)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -23,6 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS =['https://vanta-ai-1.onrender.com']
+
+
 
 
 # Application definition
